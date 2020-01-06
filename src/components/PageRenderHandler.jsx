@@ -1,19 +1,23 @@
 import React from 'react';
-import { Idcheck } from 'utils/IdCheck';
+import { checkId } from 'utils/checkId';
 import ProductsPage from 'pages/ProductsPage';
 import SingleProductPage from 'pages/SingleProductPage';
 
-
 const PageRenderHandler = ({ match, location }) => {
-
-  const { params: { id } } = match;
+  const {
+    params: { id },
+  } = match;
   const { search } = location;
-  
+
   return (
     <div>
-      {Idcheck(id)? <SingleProductPage id={id}/> : <ProductsPage id={search}/> }
+      {checkId(id) ? (
+        <SingleProductPage id={id} />
+      ) : (
+        <ProductsPage id={search} />
+      )}
     </div>
-  )
-}
+  );
+};
 
 export default PageRenderHandler;
